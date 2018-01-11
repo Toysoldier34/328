@@ -1,0 +1,8 @@
+1. create project repo on itHub
+2. copy URL of repo
+3. clone the repo in 328 folder
+	git clone ...
+4. when change is made
+	git add -
+	git commit -m "message"
+	git push origin master
