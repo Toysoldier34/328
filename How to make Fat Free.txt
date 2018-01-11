@@ -1,0 +1,8 @@
+1. add composer.json to project folder
+2. install composer (using terminal window)
+3. create index page and require autoload
+	require autoload
+	instantiate F3
+	define a default route
+	run F3
+4. commit changes
