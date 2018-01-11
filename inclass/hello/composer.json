@@ -1,0 +1,12 @@
+{
+  "name":"athompso/328/inclass/hello",
+  "authors":[
+    {
+      "name":"Tony Thompson",
+      "email":"athompson15@greenriver.mail.edu"
+    }
+  ],
+  "require":{
+    "bcosca/fatfree-core":"dev-master"
+  }
+}
