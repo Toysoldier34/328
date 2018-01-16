@@ -55,6 +55,30 @@ $f3->route('GET /bracelet', function() {
 );
 
 
+//params
+//define a page2 route
+$f3->route('GET /hello/@name',
+    function($f3, $params) {
+    $name = $params['name'];
+    echo "<h1>Hello, $name</h1>";
+}
+);
+
+//define a language route
+$f3->route('GET /language/@lang', function($f3, $params) {
+    switch($params['lang']) {
+        case 'swahili':
+            echo 'Jumbo!'; break;
+        case 'spanish':
+            echo 'Hola!'; break;
+        case 'russian':
+            echo 'Privet!'; break;
+        default:
+            echo 'Hello!';
+    }
+}
+);
+
 //run Fat-Free
 $f3->run();
 
