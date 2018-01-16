@@ -41,6 +41,19 @@ $f3->route('GET /page2', function() {
 }
 );
 
+//define a page2 route
+$f3->route('GET /rings', function() {
+    $template = new Template();
+    echo $template->render('views/rings.html');
+}
+);
+
+//define a page2 route
+$f3->route('GET /bracelet', function() {
+    echo '<h1>This is bracelet page</h1>';
+}
+);
+
 
 //run Fat-Free
 $f3->run();
