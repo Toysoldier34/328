@@ -13,16 +13,10 @@ error_reporting(E_ALL);
 
 //Part 1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+$animals = array("panda", "alpaca", "boa");
+echo "<h3>Part 1</h3>";
+sortPrint($animals);
+addToAnimals("goat");
+sortPrint($animals);
+addToAnimals("Boa");
+sortPrint($animals);
