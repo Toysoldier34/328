@@ -49,6 +49,15 @@ function addToAnimals($word) {
 
 echo "<h3>Part 2</h3>";
 
+$cupcakes = array(
+    "grasshopper"=>"The Grasshopper",
+    "maple"=>"Whiskey Maple Bacon",
+    "carrot"=>"Carrot Walnut",
+    "caramel"=>"Salted Caramel Cupcake",
+    "velvet"=>"Red Velvet",
+    "lemon"=>"Lemon Drop",
+    "tiramisu"=>"Tiramisu"
+);
 
 
 
