@@ -44,3 +44,22 @@ function addToAnimals($word) {
     array_push($animals, $word);
 }
 
+
+//Part 2
+
+echo "<h3>Part 2</h3>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
