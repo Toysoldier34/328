@@ -29,3 +29,18 @@ function sortPrint($array) {
     }
     echo "<p>".$print."</p>";
 }
+
+function addToAnimals($word) {
+    global $animals;
+    echo "<p>adding " . $word . "...</p>";
+    $word = strtolower($word);
+    foreach ($animals as $i) {
+        $i = strtolower($i);
+         if ($i === $word) {
+             echo "<p>already in list</p>";
+             return;
+         }
+    }
+    array_push($animals, $word);
+}
+
