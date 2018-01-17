@@ -20,3 +20,12 @@ addToAnimals("goat");
 sortPrint($animals);
 addToAnimals("Boa");
 sortPrint($animals);
+
+function sortPrint($array) {
+    sort($array);
+    $print = "";
+    foreach ($array as $i) {
+        $print = $print . ' ' . $i;
+    }
+    echo "<p>".$print."</p>";
+}
