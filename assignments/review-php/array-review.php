@@ -59,16 +59,7 @@ $cupcakes = array(
     "tiramisu"=>"Tiramisu"
 );
 
+foreach ($cupcakes as $name => $displayName) {
+    echo '<input type="checkbox" name="flavors[]" value="'.$name.'"> '.$displayName.'<br>';
 
-
-
-
-
-
-
-
-
-
-
-
-
+}
