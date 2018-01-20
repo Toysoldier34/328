@@ -1,0 +1,12 @@
+{
+  "name":"athompson/328/assignments/dating",
+  "authors":[
+    {
+      "name":"Tony Thompson",
+      "email":"athompson15@mail.greenriver.edu"
+    }
+  ],
+  "require":{
+    "bcosca/fatfree-core":"dev-master"
+  }
+}
