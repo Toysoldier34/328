@@ -30,8 +30,5 @@ $f3->route('GET /', function() {
 }
 );
 
-//define a page1 route
-$f3->route('GET /page1', function() {
-    echo '<h1>This is page 1</h1>';
-}
-);
+//run Fat-Free
+$f3->run();
