@@ -24,11 +24,45 @@ $f3->set('DEBUG', 3);
 
 
 //define a default route
-$f3->route('GET /', function() {
+$f3->route('GET|POST /', function() {
+    echo "TestHome4";
     $template = new Template();
-    echo $template->render('pages/home.html');
+    echo $template->render('views/home.html');
 }
 );
+
+//define a default route
+$f3->route('GET|POST /test', function() {
+    $template = new Template();
+    echo $template->render('views/home.html');
+}
+);
+
+
+//define a create profile info route
+$f3->route('GET|POST /create/profile-info', function() {
+    $template = new Template();
+    echo $template->render('views/profile-info.html');
+}
+);
+
+//define an interests route
+$f3->route('GET|POST /create/interests', function() {
+    $template = new Template();
+    echo $template->render('views/interests.html');
+}
+);
+
+//define a summary route
+$f3->route('GET|POST /summary', function() {
+    $template = new Template();
+    echo $template->render('views/summary.html');
+}
+);
+
+
+
+
 
 //run Fat-Free
 $f3->run();

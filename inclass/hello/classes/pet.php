@@ -39,6 +39,10 @@ class Pet {
         echo "<h4>$this->name is indifferent to your affection.</h4>";
     }//end eat
 
+    function talk() {
+        echo $this->name ." is talking";
+    }
+
     /**
      * gets the pet's name
      * @return string name

@@ -34,7 +34,7 @@ $f3->route('GET /pets', function($f3) {
    $pet1 = new Pet("Elsalvador", "pink");
    $pet2 = new Pet("Kingsly");
    $pet3 = new Dog();
-   $pet4 = new Cat();
+   $pet4 = new Cat("Wrangler");
 
    $pet3->setName("Dingus");
 
@@ -49,7 +49,13 @@ $f3->route('GET /pets', function($f3) {
    $pet2->eat();
    $pet3->eat();
 
-   $pet4->scratch();
+   $pet4->scratch(); echo "<br>";
+
+    $pet1->talk(); echo "<br>";
+
+    $pet2->talk(); echo "<br>";
+    $pet3->talk(); echo "<br>";
+    $pet4->talk(); echo "<br>";
 
    print_r($pet1);
 
