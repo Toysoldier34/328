@@ -76,10 +76,10 @@ $f3->route('GET|POST /profile-info', function() {
         if ($isValid) {
             echo $template->render('views/profile-info.html');
         } else {
-            if ($fVal) echo "<p>Enter a valid first name</p>";
-            if ($lVal) echo "<p>Enter a valid last name</p>";
-            if ($aVal) echo "<p>Enter a valid age over 18</p>";
-            if ($pVal) echo "<p>Enter a valid phone number</p>";
+            if (!$fVal) echo "<p>Enter a valid first name</p>";
+            if (!$lVal) echo "<p>Enter a valid last name</p>";
+            if (!$aVal) echo "<p>Enter a valid age over 18</p>";
+            if (!$pVal) echo "<p>Enter a valid phone number</p>";
             echo $template->render('views/personal-information.html');
         }
     } else {
@@ -137,8 +137,8 @@ $f3->route('GET|POST /summary', function($f3) {
 
             echo $template->render('views/summary.html');
         } else {
-            if ($oVal) echo "<p>Valid outdoor activities only</p>";
-            if ($iVal) echo "<p>Valid indoor activities only</p>";
+            if (!$oVal) echo "<p>Valid outdoor activities only</p>";
+            if (!$iVal) echo "<p>Valid indoor activities only</p>";
             echo $template->render('views/interests.html');
         }
     } else {

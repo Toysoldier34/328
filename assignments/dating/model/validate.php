@@ -18,23 +18,32 @@ function validAge($age) {
 
 //checks to see that a phone number is valid
 function validPhone($phone) {
-    return (preg_match("/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/", $phone));
+    $phone = str_replace('-', '', $phone);
+    $phone = str_replace(' ', '', $phone);
+    $phone = str_replace('(', '', $phone);
+    $phone = str_replace(')', '', $phone);
+    return (is_numeric($phone) && (strlen($phone) > 9 && (strlen($phone) < 16)));
 }
 
 //checks each selected outdoor interest against a list of valid options
 function validOutdoor($outdoor) {
-    $realOutdoors = array('hiking', 'biking', 'swimming', 'collecting', 'walking', 'climbing');
-    foreach ($outdoor as $item) {
-        if (!in_array($item, $realOutdoors)) return false;
+    if (!empty($outdoor)) {
+        $realOutdoors = array('hiking', 'biking', 'swimming', 'collecting', 'walking', 'climbing');
+        foreach ($outdoor as $item) {
+            if (!in_array($item, $realOutdoors)) return false;
+        }
     }
     return true;
+
 }
 
 //checks each selected indoor interest against a list of valid options
 function validIndoor($indoor) {
-    $realIndoors = array('tv', 'movies', 'cooking', 'board-games', 'puzzles', 'reading', 'playing-cards', 'video-games');
-    foreach ($indoor as $item) {
-        if (!in_array($item, $realIndoors)) return false;
+    if (!empty($outdoor)) {
+        $realIndoors = array('tv', 'movies', 'cooking', 'board-games', 'puzzles', 'reading', 'playing-cards', 'video-games');
+        foreach ($indoor as $item) {
+            if (!in_array($item, $realIndoors)) return false;
+        }
     }
     return true;
 }
