@@ -4,6 +4,7 @@
  * User: Tony Thompson
  * Date: 2/2/2018
  * Time: 11:40 AM
+ * functions to validate input data
  */
 
 //checks to see that a string is all alphabetic
