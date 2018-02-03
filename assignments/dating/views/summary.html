@@ -33,95 +33,60 @@
 
 <!-- container -->
 <div class="container  m-auto card">
+    <br>
+    <div class="row"> <!-- main contain row -->
 
-    <!-- form -->
-    <form method="post" action="/profile-info">
-
-        <!-- row upper -->
-        <div class="row  m-auto card-block">
-            <!-- heading -->
-            <div class="row">
-                <div class="col-12">
-                    <h2>Personal Information</h2>
-
-                </div>
-
+        <!-- left col -->
+        <div class="col-6">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Name: {{@first}} {{@last}}</li>
+                    <li class="list-group-item">Gender: {{@gender}}</li>
+                    <li class="list-group-item">Age: {{@age}}</li>
+                    <li class="list-group-item">Phone: {{@phone}}</li>
+                    <li class="list-group-item">Email: {{@email}}</li>
+                    <li class="list-group-item">State: {{@state}}</li>
+                    <li class="list-group-item">Seeking: {{@seeking}}</li>
+                    <li class="list-group-item">Interests:
+                        <repeat group="{{@indoor}}" value="{{@interest}}">
+                            {{@interest}}
+                        </repeat>
+                        <repeat group="{{@outdoor}}" value="{{@interest}}">
+                            {{@interest}}
+                        </repeat>
+                    </li>
+                </ul>
             </div>
-            <div class="col-12">
-                <hr>
-            </div>
-            <div class="row">
-
-                <!-- col left -->
-                <div class="col-8 mx-auto">
+        </div>
 
 
-                    <div class="row form-group">
-                        <label class="font-weight-bold">First Name</label>
-                        <input type="text" class="form-control" id="first" value="Sarah">
-                    </div>
-                    <div class="row form-group">
-                        <label class="font-weight-bold">Last Name</label>
-                        <input type="text" class="form-control" id="last" value="Smith">
-                    </div>
-                    <div class="row form-group">
-                        <label class="font-weight-bold">Age</label>
-                        <input type="text" class="form-control" id="age" value="30">
-                    </div>
-
-                    <!-- radio -->
-                    <div class="row form-check">
-                        <div class="font-weight-bold">Gender</div>
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                                Male
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="gender" id="female" value="female"
-                                       checked>
-                                Female
-                            </label>
-                        </div>
-                    </div> <!-- end row -->
-
-                    <!-- phone -->
-                    <div class="row form-group">
-                        <label class="font-weight-bold">Phone Number</label>
-                        <input type="text" class="form-control" id="phone" value="222-333-4444">
-
-
-                    </div> <!-- end row -->
-                </div> <!-- end col -->
-
-
-                <!-- col right -->
-                <div class="col-4">
-                    <div class="card #gray">
-                        <div class="card-block p3">
-                            <p>
-                                <span class="font-weight-bold">Note:</span>
-                                all information entered is protected by our
-                                <a href="">privacy policy</a>.
-                                Profile information can only be viewed by others
-                                with your permission
-                            </p>
-                        </div>
-                    </div><!-- end col right -->
-                </div>
-
-
-                <div class="row ">
-
-                    <div class="col text-right">
-                        <button class="btn btn-primary" name="submit" value="next" type="submit">Next ></button>
-                    </div>
+        <!-- right col -->
+        <div class="col-6">
+            <div class="row"> <!-- top right -->
+                <div class="col">
+                    <img src="images/mainprofile.jpg" class="rounded img-fluid mx-auto" alt="Responsive image">
                 </div>
             </div>
-    </form> <!-- end form -->
-</div> <!-- end row -->
+            <div class="row"> <!-- bottom right -->
+                <div class="col">
+                    <h5>Biography</h5>
+                    <p>{{@bio}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- end contain row -->
+
+    <!-- button -->
+    <div class="row">
+        <div class="col text-center">
+            <button class="btn btn-primary" name="submit" value="next" type="submit">Contact Me!
+            </button>
+        </div>
+    </div>
+    <br>
+
+</div> <!-- end container -->
 
 
 <!-- Optional JavaScript -->

@@ -25,64 +25,83 @@
 </head>
 <body>
 
-<div class="container border border-muted rounded mt-3 px-4">
+<!-- As a heading -->
+<nav class="navbar navbar-light bg-faded">
+    <h1 class="navbar-brand mb-0">My Dating Website</h1>
+</nav>
+<br>
 
+<!-- container -->
+<div class="container  m-auto card">
 
-    <h1 class="mt-5">Personal Information</h1>
-    <hr/>
-
+    <!-- form -->
     <form method="post" action="summary">
 
-
-        <!-- indoor -->
-        <div class="row">
-            <div class="col-10 mt-1 ">
-                <h6 class="font-weight-bold">Indoor Interests</h6>
+        <!-- row upper -->
+        <div class="row  m-auto card-block">
+            <!-- heading -->
+            <div class="col-12">
+                <h2>Interests</h2>
+                <hr>
             </div>
-        </div>
-
-        <div class="row ml-1">
-            <div class="form-control col-3"><input type = "checkbox" name="indoor[]" value="tv" >&nbsp&nbsptv</div>
-            <div class="form-control col-3"><input type = "checkbox" name="indoor[]" value="movies" >&nbsp&nbspmovies</div>
-            <div class="form-control col-3"><input type = "checkbox" name="indoor[]" value="cooking" >&nbsp&nbspcooking</div>
-            <div class="form-control col-3"><input type = "checkbox" name="indoor[]" value="board games" >&nbsp&nbspboard games</div>
-            <div class="form-control col-3"><input type = "checkbox" name="indoor[]" value="puzzles" >&nbsp&nbsppuzzles</div>
-            <div class="form-control col-3"><input type = "checkbox" name="indoor[]" value="reading" >&nbsp&nbspreading</div>
-            <div class="form-control col-3"><input type = "checkbox" name="indoor[]" value="playing cards" >&nbsp&nbspplaying cards</div>
-            <div class="form-control col-3"><input type = "checkbox" name="indoor[]" value="video games" >&nbsp&nbspvideo games</div>
-        </div>
 
 
-        <!-- outdoor -->
-        <div class="row">
-            <div class="col-10 mt-1 ">
-                <h6 class="font-weight-bold">Outdoor Interests</h6>
+            <!-- indoor -->
 
-            </div>
-        </div>
+            <!-- radio -->
+            <div class="col-12 form-check">
+                <div class="font-weight-bold">In-door Interests</div>
 
-        <div class="row ml-1">
-            <div class="form-control col-3"><input type = "checkbox" name="outdoor[]" value="hiking" >&nbsp&nbsphiking</div>
-            <div class="form-control col-3"><input type = "checkbox" name="outdoor[]" value="biking" >&nbsp&nbspbiking</div>
-            <div class="form-control col-3"><input type = "checkbox" name="outdoor[]" value="swimming" >&nbsp&nbspswimming</div>
-            <div class="form-control col-3"><input type = "checkbox" name="outdoor[]" value="collecting" >&nbsp&nbspcollecting</div>
-            <div class="form-control col-3"><input type = "checkbox" name="outdoor[]" value="walking" >&nbsp&nbspwalking</div>
-            <div class="form-control col-3"><input type = "checkbox" name="outdoor[]" value="climbing" >&nbsp&nbspclimbing</div>
+                <div class="row">
+                    <label class="checkbox col-3"><input type="checkbox" name="indoor[]" value="tv"> tv</label>
+                    <label class="checkbox col-3"><input type="checkbox" name="indoor[]" value="movies"> movies</label>
+                    <label class="checkbox col-3"><input type="checkbox" name="indoor[]" value="cooking"> cooking</label>
+                    <label class="checkbox col-3"><input type="checkbox" name="indoor[]" value="board games"> board games</label>
+                </div>
+                <div class="row">
+                    <label class="checkbox-inline col-3"><input type="checkbox" name="indoor[]" value="puzzles"> puzzles</label>
+                    <label class="checkbox-inline col-3"><input type="checkbox" name="indoor[]" value="reading"> reading</label>
+                    <label class="checkbox-inline col-3"><input type="checkbox" name="indoor[]" value="playing cards"> playing
+                        cards</label>
+                    <label class="checkbox-inline col-3"><input type="checkbox" name="indoor[]" value="video games"> video games</label>
+                </div>
 
-            <br>
 
-        </div>
+                <div class="font-weight-bold">Out-door Interests</div>
+                <div class="row">
+                    <label class="checkbox col-3"><input type="checkbox" name="outdoor[]" value="hiking"> hiking</label>
+                    <label class="checkbox col-3"><input type="checkbox" name="outdoor[]" value="biking"> biking</label>
+                    <label class="checkbox col-3"><input type="checkbox" name="outdoor[]" value="swimming"> swimming</label>
+                    <label class="checkbox col-3"><input type="checkbox" name="outdoor[]" value="collecting"> collecting</label>
+                </div>
+                <div class="row">
+                    <label class="checkbox-inline col-3"><input type="checkbox" name="outdoor[]" value="walking"> walking</label>
+                    <label class="checkbox-inline col-3"><input type="checkbox" name="outdoor[]" value="climbing"> climbing</label>
+                </div>
 
-        <div class="row">
 
-            <div class="col mt-2">
-                <div class="text-right mb-4">
-                    <input type="submit" class="btn btn-primary" name="submit" value="Next >">
+            </div> <!-- end row -->
+
+
+
+
+            <!-- button -->
+            <div class="col">
+                <div class="row">
+                    <div class="col-11">
+                        <div class="mx-auto">
+                            <button class="btn btn-primary float-right" name="submit" value="next" type="submit">Next >
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
-    </form>
+
+    </form> <!-- end form -->
 </div>
+</div> <!-- end row -->
 
 
 <!-- Optional JavaScript -->

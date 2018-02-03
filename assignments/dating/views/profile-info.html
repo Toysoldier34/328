@@ -50,12 +50,12 @@
 
                 <div class="row form-group">
                     <label class="font-weight-bold">Email</label>
-                    <input type="text" class="form-control" id="email" value="dating@for.fun">
+                    <input type="text" class="form-control" name="email" id="email" value="dating@for.fun">
                 </div>
 
                 <div class="row form-group">
                     <label class="font-weight-bold">State</label>
-                    <select class="form-control" id="state">
+                    <select class="form-control" name="state" id="state">
                         <option>Idaho</option>
                         <option>Oregon</option>
                         <option>Washington</option>
@@ -85,17 +85,25 @@
             <!-- right side -->
             <div class="col-6 form-group">
                 <label class="font-weight-bold">Biography</label>
-                <textarea class="form-control" rows="6" id="bio"></textarea>
+                <textarea class="form-control" rows="6" name="bio" id="bio"></textarea>
             </div>
+
+
+            <div class="col">
+                <div class="row">
+
+                    <div class="col-11">
+                        <div class="mx-auto">
+                            <button class="btn btn-primary float-right" name="submit" value="next" type="submit">Next >
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <div class="row">
 
-            <div class="col-md-11 text-right mb-4">
-                <input type="submit" class="btn btn-primary" name="submit" value="Next >">
-
-            </div>
-        </div>
     </form>
 </div>
 
