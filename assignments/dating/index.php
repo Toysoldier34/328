@@ -23,13 +23,14 @@ $f3 = Base::instance();
 //set debug level
 $f3->set('DEBUG', 3);
 
-$f3->set('first', 'Sarah');
-$f3->set('last', 'Smith');
-$f3->set('age', '30');
-$f3->set('phone', '222-333-4444');
-$f3->set('email', 'dating@for.fun');
 
-$f3->set('states', array('Idaho', 'Oregon', 'Washington'));
+    $f3->set('first', 'Sarah');
+    $f3->set('last', 'Smith');
+    $f3->set('age', '30');
+    $f3->set('phone', '222-333-4444');
+    $f3->set('email', 'dating@for.fun');
+
+    $f3->set('states', array('Idaho', 'Oregon', 'Washington'));
 
 
 //define a default route
@@ -52,7 +53,7 @@ $f3->route('GET|POST /personal-information', function() {
 //define a create profile info route
 $f3->route('GET|POST /profile-info', function($f3) {
     //from personal-information
-
+    //print_r($_POST);
     $template = new Template();
     if(isset($_POST['submit'])) {
         $first = $_SESSION['first'] = $_POST['first'];
@@ -102,8 +103,10 @@ $f3->route('GET|POST /profile-info', function($f3) {
 }
 );
 
+
 //define an interests route
 $f3->route('GET|POST /interests', function($f3) {
+    //print_r($_POST);
     //from profile
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['seeking'] = $_POST['seeking'];
@@ -115,18 +118,32 @@ $f3->route('GET|POST /interests', function($f3) {
     $f3->set('state', $_SESSION['state']);
     $f3->set('bio', $_SESSION['bio']);
 
+
     $template = new Template();
     echo $template->render('views/interests.html');
 }
 );
 
+
 //define a summary route
 $f3->route('GET|POST /summary', function($f3) {
-
+    //print_r($_POST);
     $template = new Template();
     if(isset($_POST['submit'])) {
     $indoor = $_SESSION['indoor'] = $_POST['indoor'];
     $outdoor = $_SESSION['outdoor'] = $_POST['outdoor'];
+
+        $f3->set('first', $_SESSION['first']);
+        $f3->set('last', $_SESSION['last']);
+        $f3->set('age', $_SESSION['age']);
+        $f3->set('gender', $_SESSION['gender']);
+        $f3->set('phone', $_SESSION['phone']);
+
+        $f3->set('email', $_SESSION['email']);
+        $f3->set('seeking', $_SESSION['seeking']);
+        $f3->set('state', $_SESSION['state']);
+        $f3->set('bio', $_SESSION['bio']);
+
         $f3->set('indoor', $_SESSION['indoor']);
         $f3->set('outdoor', $_SESSION['outdoor']);
 
