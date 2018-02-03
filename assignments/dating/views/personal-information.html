@@ -1,7 +1,7 @@
 <!--
  Tony Thompson
- 1/19/18
- home.html
+ 2/2/18
+ personal-information.html
  Welcome page for dating website
  -->
 <!DOCTYPE html>
@@ -19,6 +19,7 @@
             integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
             crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="../styles/styles.css">
 
     <title>Dating</title>
 </head>
@@ -38,79 +39,87 @@
 
         <!-- row upper -->
         <div class="row  m-auto card-block">
+            <!-- heading -->
+            <div class="row">
+                <div class="col-12">
+                    <h2>Personal Information</h2>
+
+                </div>
+
+            </div>
+            <div class="col-12">
+                <hr>
+            </div>
             <div class="row">
 
-            <!-- col left -->
-            <div class="col-7">
-                <!-- heading -->
-                <div class="text-center">
-                    <h2>Personal Information</h2>
-                </div>
+                <!-- col left -->
+                <div class="col-8 mx-auto">
 
 
-                <div class="row form-group">
-                    <label class="font-weight-bold">First Name</label>
-                    <input type="text" class="form-control" id="first">
-                </div>
-                <div class="row form-group">
-                    <label class="font-weight-bold">Last Name</label>
-                    <input type="text" class="form-control" id="last">
-                </div>
-                <div class="row form-group">
-                    <label class="font-weight-bold">Age</label>
-                    <input type="text" class="form-control" id="age">
-                </div>
-
-                <!-- radio -->
-                <div class="row form-check">
-                    <div class="font-weight-bold">Gender</div>
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                            Male
-                        </label>
+                    <div class="row form-group">
+                        <label class="font-weight-bold">First Name</label>
+                        <input type="text" class="form-control" id="first" value="Sarah">
                     </div>
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="female"
-                                   checked>
-                            Female
-                        </label>
+                    <div class="row form-group">
+                        <label class="font-weight-bold">Last Name</label>
+                        <input type="text" class="form-control" id="last" value="Smith">
                     </div>
-                </div> <!-- end row -->
+                    <div class="row form-group">
+                        <label class="font-weight-bold">Age</label>
+                        <input type="text" class="form-control" id="age" value="30">
+                    </div>
 
-                <!-- phone -->
-                <div class="row form-group">
-                    <label class="font-weight-bold">Phone Number</label>
-                    <input type="text" class="form-control" id="phone">
+                    <!-- radio -->
+                    <div class="row form-check">
+                        <div class="font-weight-bold">Gender</div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="female"
+                                       checked>
+                                Female
+                            </label>
+                        </div>
+                    </div> <!-- end row -->
+
+                    <!-- phone -->
+                    <div class="row form-group">
+                        <label class="font-weight-bold">Phone Number</label>
+                        <input type="text" class="form-control" id="phone" value="222-333-4444">
 
 
-                </div> <!-- end row -->
-            </div> <!-- end col -->
+                    </div> <!-- end row -->
+                </div> <!-- end col -->
 
 
-            <!-- col right -->
-            <div class="col card">
-                <div class="card-block">
-                    <p>
-                        <span class="font-weight-bold">Note:</span>
-                        all information entered is protected by our
-                        <a href="">privacy policy</a>.
-                        Profile information can only be viewed by others
-                        with your permission
-                    </p>
+                <!-- col right -->
+                <div class="col-4">
+                    <div class="card #gray">
+                        <div class="card-block p3">
+                            <p>
+                                <span class="font-weight-bold">Note:</span>
+                                all information entered is protected by our
+                                <a href="">privacy policy</a>.
+                                Profile information can only be viewed by others
+                                with your permission
+                            </p>
+                        </div>
+                    </div><!-- end col right -->
                 </div>
-            </div><!-- end col right -->
-        </div>
-            <div class="row text-right">
-                <div class="col-8">
 
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-primary" name="submit" value="next" type="submit">Next></button>
+
+                <div class="row ">
+
+                    <div class="col text-right">
+                        <button class="btn btn-primary" name="submit" value="next" type="submit">Next ></button>
+                    </div>
                 </div>
             </div>
-        </div>
     </form> <!-- end form -->
 </div> <!-- end row -->
 
