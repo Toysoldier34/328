@@ -42,14 +42,20 @@ $f3->route('GET|POST /personal-information', function() {
 
 //define a create profile info route
 $f3->route('GET|POST /profile-info', function() {
-
-    //print_r($_POST);
     //from personal-information
-    $_SESSION['first'] = $_POST['first'];
-    $_SESSION['last'] = $_POST['last'];
-    $_SESSION['age'] = $_POST['age'];
-    $_SESSION['gender'] = $_POST['gender'];
-    $_SESSION['phone'] = $_POST['phone'];
+
+    if(isset($_POST['submit'])) {
+        $first = $_SESSION['first'] = $_POST['first'];
+        $last = $_SESSION['last'] = $_POST['last'];
+        $age = $_SESSION['age'] = $_POST['age'];
+        $_SESSION['gender'] = $_POST['gender'];
+        $phone = $_SESSION['phone'] = $_POST['phone'];
+
+        include('model/validate.php');
+    }
+
+
+
     $template = new Template();
     echo $template->render('views/profile-info.html');
 }
@@ -69,9 +75,18 @@ $f3->route('GET|POST /interests', function() {
 
 //define a summary route
 $f3->route('GET|POST /summary', function($f3) {
-    $_SESSION['indoor'] = $_POST['indoor'];
-    $_SESSION['outdoor'] = $_POST['outdoor'];
 
+    if(isset($_POST['submit'])) {
+    $indoor = $_SESSION['indoor'] = $_POST['indoor'];
+    $outdoor = $_SESSION['outdoor'] = $_POST['outdoor'];
+
+        include('model/validate.php');
+
+
+    }
+
+
+    //set variables in hive
     $f3->set('first', $_SESSION['first']);
     $f3->set('last', $_SESSION['last']);
     $f3->set('age', $_SESSION['age']);
@@ -85,10 +100,6 @@ $f3->route('GET|POST /summary', function($f3) {
 
     $f3->set('indoor', $_SESSION['indoor']);
     $f3->set('outdoor', $_SESSION['outdoor']);
-
-
-
-
 
     $template = new Template();
     echo $template->render('views/summary.html');
