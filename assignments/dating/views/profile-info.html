@@ -50,15 +50,18 @@
 
                 <div class="row form-group">
                     <label class="font-weight-bold">Email</label>
-                    <input type="text" class="form-control" name="email" id="email" value="dating@for.fun">
+                    <input type="text" class="form-control" name="email" id="email" value="{{@email}}">
                 </div>
 
                 <div class="row form-group">
                     <label class="font-weight-bold">State</label>
                     <select class="form-control" name="state" id="state">
-                        <option>Idaho</option>
-                        <option>Oregon</option>
-                        <option>Washington</option>
+                        <repeat group="{{ @states }}" value="{{ @stateOp }}">
+                            <option
+                            <check if="{{ @stateOp == @state }}">selected</check>>
+                            {{ @stateOp }}
+                            </option>
+                        </repeat>
                     </select>
                 </div>
 

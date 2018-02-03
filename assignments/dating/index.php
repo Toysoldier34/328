@@ -22,6 +22,14 @@ $f3 = Base::instance();
 //set debug level
 $f3->set('DEBUG', 3);
 
+$f3->set('first', 'Sarah');
+$f3->set('last', 'Smith');
+$f3->set('age', '30');
+$f3->set('phone', '222-333-4444');
+$f3->set('email', 'dating@for.fun');
+
+$f3->set('states', array('Idaho', 'Oregon', 'Washington'));
+
 
 //define a default route
 $f3->route('GET|POST /', function() {
@@ -41,7 +49,7 @@ $f3->route('GET|POST /personal-information', function() {
 
 
 //define a create profile info route
-$f3->route('GET|POST /profile-info', function() {
+$f3->route('GET|POST /profile-info', function($f3) {
     //from personal-information
 
     $template = new Template();
@@ -52,6 +60,11 @@ $f3->route('GET|POST /profile-info', function() {
         $_SESSION['gender'] = $_POST['gender'];
         $phone = $_SESSION['phone'] = $_POST['phone'];
 
+        $f3->set('first', $_SESSION['first']);
+        $f3->set('last', $_SESSION['last']);
+        $f3->set('age', $_SESSION['age']);
+        $f3->set('gender', $_SESSION['gender']);
+        $f3->set('phone', $_SESSION['phone']);
 
         include('model/validate.php');
 
@@ -89,12 +102,18 @@ $f3->route('GET|POST /profile-info', function() {
 );
 
 //define an interests route
-$f3->route('GET|POST /interests', function() {
+$f3->route('GET|POST /interests', function($f3) {
     //from profile
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['seeking'] = $_POST['seeking'];
     $_SESSION['state'] = $_POST['state'];
     $_SESSION['bio'] = $_POST['bio'];
+
+    $f3->set('email', $_SESSION['email']);
+    $f3->set('seeking', $_SESSION['seeking']);
+    $f3->set('state', $_SESSION['state']);
+    $f3->set('bio', $_SESSION['bio']);
+
     $template = new Template();
     echo $template->render('views/interests.html');
 }
@@ -107,6 +126,8 @@ $f3->route('GET|POST /summary', function($f3) {
     if(isset($_POST['submit'])) {
     $indoor = $_SESSION['indoor'] = $_POST['indoor'];
     $outdoor = $_SESSION['outdoor'] = $_POST['outdoor'];
+        $f3->set('indoor', $_SESSION['indoor']);
+        $f3->set('outdoor', $_SESSION['outdoor']);
 
         include('model/validate.php');
         $isValid = $iVal = $oVal = true;
@@ -119,22 +140,9 @@ $f3->route('GET|POST /summary', function($f3) {
             $isValid = $oVal = false;
         }
 
+
+
         if ($isValid) {
-            //set variables in hive
-            $f3->set('first', $_SESSION['first']);
-            $f3->set('last', $_SESSION['last']);
-            $f3->set('age', $_SESSION['age']);
-            $f3->set('gender', $_SESSION['gender']);
-            $f3->set('phone', $_SESSION['phone']);
-
-            $f3->set('email', $_SESSION['email']);
-            $f3->set('seeking', $_SESSION['seeking']);
-            $f3->set('state', $_SESSION['state']);
-            $f3->set('bio', $_SESSION['bio']);
-
-            $f3->set('indoor', $_SESSION['indoor']);
-            $f3->set('outdoor', $_SESSION['outdoor']);
-
             echo $template->render('views/summary.html');
         } else {
             if (!$oVal) echo "<p>Valid outdoor activities only</p>";
