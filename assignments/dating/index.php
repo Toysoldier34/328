@@ -25,6 +25,7 @@ $f3->set('DEBUG', 3);
 
 //define a default route
 $f3->route('GET|POST /', function() {
+    //default home
     $template = new Template();
     echo $template->render('views/home.html');
 }
@@ -40,7 +41,7 @@ $f3->route('GET|POST /personal-information', function() {
 
 
 //define a create profile info route
-$f3->route('GET|POST /create/profile-info', function() {
+$f3->route('GET|POST /profile-info', function() {
     //from personal-information
     $_SESSION['first'] = $_POST['first'];
     $_SESSION['last'] = $_POST['last'];
@@ -53,7 +54,7 @@ $f3->route('GET|POST /create/profile-info', function() {
 );
 
 //define an interests route
-$f3->route('GET|POST /create/interests', function() {
+$f3->route('GET|POST /interests', function() {
     //from profile
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['seeking'] = $_POST['seeking'];

@@ -32,55 +32,60 @@
 <br>
 
 
-<div class="container border border-muted rounded mt-3 px-4">
+<div class="container  m-auto card">
 
 
-    <h1 class="mt-5">Profile</h1>
-    <hr/>
+    <form method="post" action="interests">
+
+        <div class="row mx-auto card-block">
+            <!-- heading -->
+                <div class="col-12">
+                    <h2>Profile</h2>
+                    <hr>
+                </div>
 
 
-    <form method="post"  action="interests">
-
-        <div class="row">
+            <!-- left side -->
             <div class="col-6">
 
-                <label><span class="strong">Email</span><br/>
-                    <input type = "text" class="rounded col" placeholder="email@gmail.com" size="90%"
-                           name="email" value=""></label>
+                <div class="row form-group">
+                    <label class="font-weight-bold">Email</label>
+                    <input type="text" class="form-control" id="email" value="dating@for.fun">
+                </div>
 
-                <label><span class="strong">State</span><br/>
-                </label>
+                <div class="row form-group">
+                    <label class="font-weight-bold">State</label>
+                    <select class="form-control" id="state">
+                        <option>Idaho</option>
+                        <option>Oregon</option>
+                        <option>Washington</option>
+                    </select>
+                </div>
 
-                <select class="form-control border border-secondary" name="state" id="state">
-                    <option>--Select--</option>
+                <!-- radio -->
+                <div class="row form-check">
+                    <div class="font-weight-bold">Seeking</div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="seeking" id="male" value="male" checked>
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="seeking" id="female" value="female">
+                            Female
+                        </label>
+                    </div>
+                </div> <!-- end row -->
 
-                    <option
-                    >
-                        Idaho
-                    </option>
-
-                    <option
-                    >
-                        Oregon
-                    </option>
-
-                    <option
-                    >
-                        Washington
-                    </option>
-
-                </select>
-
-                <label class="mt-2"><span class="strong">Seeking</span><br/>
-                    <input type = "radio" name="seeking" value="male" >&nbsp; Male &nbsp;
-                    <input type = "radio" name="seeking" value="female" >&nbsp; Female<br/>
-                </label>
 
             </div>
 
-            <div class="col-md-5 m-1">
-                <h5>Biography</h5>
-                <textarea class=" rounded mt-1 p-2" cols="50" rows="5" name="biography"></textarea>
+            <!-- right side -->
+            <div class="col-6 form-group">
+                <label class="font-weight-bold">Biography</label>
+                <textarea class="form-control" rows="6" id="bio"></textarea>
             </div>
         </div>
 
