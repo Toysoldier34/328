@@ -1,0 +1,114 @@
+<!--
+ Tony Thompson
+ 2/2/18
+ profile-info.html
+ page to enter email and state for dating site
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../styles/styles.css">
+
+    <title>Dating</title>
+</head>
+<body>
+
+<!-- As a heading -->
+<nav class="navbar navbar-light bg-faded">
+    <h1 class="navbar-brand mb-0">My Dating Website</h1>
+</nav>
+<br>
+
+
+<div class="container border border-muted rounded mt-3 px-4">
+
+
+    <h1 class="mt-5">Profile</h1>
+    <hr/>
+
+
+    <form method="post"  action="interests">
+
+        <div class="row">
+            <div class="col-6">
+
+                <label><span class="strong">Email</span><br/>
+                    <input type = "text" class="rounded col" placeholder="email@gmail.com" size="90%"
+                           name="email" value=""></label>
+
+                <label><span class="strong">State</span><br/>
+                </label>
+
+                <select class="form-control border border-secondary" name="state" id="state">
+                    <option>--Select--</option>
+
+                    <option
+                    >
+                        Idaho
+                    </option>
+
+                    <option
+                    >
+                        Oregon
+                    </option>
+
+                    <option
+                    >
+                        Washington
+                    </option>
+
+                </select>
+
+                <label class="mt-2"><span class="strong">Seeking</span><br/>
+                    <input type = "radio" name="seeking" value="male" >&nbsp; Male &nbsp;
+                    <input type = "radio" name="seeking" value="female" >&nbsp; Female<br/>
+                </label>
+
+            </div>
+
+            <div class="col-md-5 m-1">
+                <h5>Biography</h5>
+                <textarea class=" rounded mt-1 p-2" cols="50" rows="5" name="biography"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-11 text-right mb-4">
+                <input type="submit" class="btn btn-primary" name="submit" value="Next >">
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
