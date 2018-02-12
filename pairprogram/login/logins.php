@@ -6,7 +6,8 @@
  */
 
 
-Class User {
+Class User
+{
     private $_username;
     private $_password;
     private $_loggedIn;
@@ -33,6 +34,16 @@ Class User {
     public function setUsername($username)
     {
         $this->_username = $username;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        if (strlen($password) > 5) {
+            $this->_password = $password;
+        }
     }
 
 
