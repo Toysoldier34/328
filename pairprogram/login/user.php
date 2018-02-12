@@ -5,13 +5,20 @@
  * Time: 11:43 AM
  */
 
-
+/**
+ * Class User verifies login info and retains users info and login status
+ */
 Class User
 {
+
+    //field
     private $_username;
     private $_password;
     private $_loggedIn;
 
+    /**
+     * User constructor.constructor for user initializes empty strings and sets loggedIn to false
+     */
     function __construct()
     {
         $this->_username = "";
@@ -20,6 +27,11 @@ Class User
     }//end constructor
 
 
+    /**
+     * checks login info if valid
+     * @param $username user login name
+     * @param $password user password
+     */
     function login($username, $password)
     {
         $userList = array();
@@ -36,6 +48,9 @@ Class User
     }
 
 
+    /**
+     * logs out user by reinitializing instance variables and setting loggedIn to false
+     */
     function logout()
     {
         $this->_username = "";
@@ -47,7 +62,7 @@ Class User
     /**** GETTERS SETTERS ****/
 
     /**
-     * @return string
+     * @return string username
      */
     public
     function getUsername()
@@ -57,6 +72,7 @@ Class User
 
     /**
      * @param string $username
+     * sets username for current user
      */
     public
     function setUsername($username)
@@ -66,6 +82,7 @@ Class User
 
     /**
      * @param string $password
+     * sets password for current user
      */
     public
     function setPassword($password)
