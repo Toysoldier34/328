@@ -20,6 +20,26 @@ Class Admin extends User {
 
 
 
+    /**** GETTERS SETTERS ****/
+
+    /**
+     * @return string access level
+     */
+    public
+    function getAccessLevel()
+    {
+        return $this->_accessLevel;
+    }
+
+    /**
+     * @param string $accessLevel
+     * sets access level for current admin user
+     */
+    public
+    function setAccessLevel($accessLevel)
+    {
+        $this->_accessLevel = $accessLevel;
+    }
 
 
 }//end class
