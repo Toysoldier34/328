@@ -19,6 +19,11 @@ Class Admin extends User {
     }
 
 
+    function editUser($user)
+    {
+        echo "<p>Editing " . $user->getUsername() . " </p>";
+    }
+
 
     /**** GETTERS SETTERS ****/
 

@@ -12,9 +12,9 @@ Class User
 {
 
     //field
-    private $_username;
-    private $_password;
-    private $_loggedIn;
+    protected $_username;
+    protected $_password;
+    protected $_loggedIn;
 
     /**
      * User constructor.constructor for user initializes empty strings and sets loggedIn to false
