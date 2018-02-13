@@ -5,4 +5,4 @@
  * Time: 11:43 AM
  */
 
-$userList = array("user1"=>"pass1", "user2"=>"pass2", "user3"=>"pass3");
+$userList = array("user1"=>"password1", "user2"=>"password2", "user3"=>"password3");

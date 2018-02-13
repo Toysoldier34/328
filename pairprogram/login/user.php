@@ -29,22 +29,24 @@ Class User
 
     /**
      * checks login info if valid
-     * @param $username user login name
-     * @param $password user password
      */
-    function login($username, $password)
+    function login()
     {
-        $userList = array();
+        $username = $this->_username;
+        $password = $this->_password;
+        echo "<p>Username: " . $username . " | Password: " . $password . "</p>";
+
         include 'logins.php';
-        if (in_array($username, $userList)) {
-            if ($userList['$username'] == $password) {
+
+        if (array_key_exists($username, $userList)) {
+            if ($userList[$username] === $password) {
+                echo "<p>" . $username . " is logged in.</p>";
+                $this->_loggedIn = true;
+                return;
             }
-            echo $username . " is logged in.";
-            $this->_loggedIn = true;
-            return;
         }
 
-        echo "Login error.";
+        echo "<p>Login error.</p>";
     }
 
 
@@ -89,7 +91,8 @@ Class User
     {
         if (strlen($password) > 5) {
             $this->_password = $password;
-        }
+        } else echo "<p>Password not long enough</p>";
+
     }
 
 
