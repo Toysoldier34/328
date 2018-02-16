@@ -41,7 +41,7 @@ $f3->route('GET|POST /', function() {
 }
 );
 
-//define a default route
+//define a personal information route
 $f3->route('GET|POST /personal-information', function() {
     //from home
     $template = new Template();
