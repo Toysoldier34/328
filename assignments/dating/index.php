@@ -9,7 +9,7 @@
 
 
 //require the autoload file
-require_once ('vendor/autoload.php');
+require_once('vendor/autoload.php');
 
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
@@ -24,17 +24,17 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 
-    $f3->set('first', 'Sarah');
-    $f3->set('last', 'Smith');
-    $f3->set('age', '30');
-    $f3->set('phone', '222-333-4444');
-    $f3->set('email', 'dating@for.fun');
+$f3->set('first', 'Sarah');
+$f3->set('last', 'Smith');
+$f3->set('age', '30');
+$f3->set('phone', '222-333-4444');
+$f3->set('email', 'dating@for.fun');
 
-    $f3->set('states', array('Idaho', 'Oregon', 'Washington'));
+$f3->set('states', array('Idaho', 'Oregon', 'Washington'));
 
 
 //define a default route
-$f3->route('GET|POST /', function() {
+$f3->route('GET|POST /', function () {
     //default home
     $template = new Template();
     echo $template->render('views/home.html');
@@ -42,7 +42,7 @@ $f3->route('GET|POST /', function() {
 );
 
 //define a personal information route
-$f3->route('GET|POST /personal-information', function() {
+$f3->route('GET|POST /personal-information', function () {
     //from home
     $template = new Template();
     echo $template->render('views/personal-information.html');
@@ -51,16 +51,17 @@ $f3->route('GET|POST /personal-information', function() {
 
 
 //define a create profile info route
-$f3->route('GET|POST /profile-info', function($f3) {
+$f3->route('GET|POST /profile-info', function ($f3) {
     //from personal-information
     //print_r($_POST);
     $template = new Template();
-    if(isset($_POST['submit'])) {
+    if (isset($_POST['submit'])) {
         $first = $_SESSION['first'] = $_POST['first'];
         $last = $_SESSION['last'] = $_POST['last'];
         $age = $_SESSION['age'] = $_POST['age'];
         $_SESSION['gender'] = $_POST['gender'];
         $phone = $_SESSION['phone'] = $_POST['phone'];
+        $_SESSION['premium'] = $_POST['premium'];
 
         $f3->set('first', $_SESSION['first']);
         $f3->set('last', $_SESSION['last']);
@@ -75,15 +76,12 @@ $f3->route('GET|POST /profile-info', function($f3) {
         if (!validName($first)) {
             $isValid = $fVal = false;
         }
-
         if (!validName($last)) {
             $isValid = $lVal = false;
         }
-
         if (!validAge($age)) {
             $isValid = $aVal = false;
         }
-
         if (!validPhone($phone)) {
             $isValid = $pVal = false;
         }
@@ -95,17 +93,18 @@ $f3->route('GET|POST /profile-info', function($f3) {
             if (!$lVal) echo "<p>Enter a valid last name</p>";
             if (!$aVal) echo "<p>Enter a valid age over 18</p>";
             if (!$pVal) echo "<p>Enter a valid phone number</p>";
-            echo $template->render('views/personal-information.html');
+
+            $f3->reroute('/personal-information');
         }
     } else {
-        echo $template->render('views/personal-information.html');
+        $f3->reroute('/personal-information');
     }
 }
 );
 
 
 //define an interests route
-$f3->route('GET|POST /interests', function($f3) {
+$f3->route('GET|POST /interests', function ($f3) {
     //print_r($_POST);
     //from profile
     $_SESSION['email'] = $_POST['email'];
@@ -118,65 +117,74 @@ $f3->route('GET|POST /interests', function($f3) {
     $f3->set('state', $_SESSION['state']);
     $f3->set('bio', $_SESSION['bio']);
 
-
     $template = new Template();
-    echo $template->render('views/interests.html');
+
+    if (isset($_SESSION['premium'])) {
+        echo $template->render('views/interests.html');
+    } else {
+        $f3->reroute('/summary');
+    }
 }
 );
 
 
 //define a summary route
-$f3->route('GET|POST /summary', function($f3) {
+$f3->route('GET|POST /summary', function ($f3) {
     //print_r($_POST);
     $template = new Template();
-    if(isset($_POST['submit'])) {
-    $indoor = $_SESSION['indoor'] = $_POST['indoor'];
-    $outdoor = $_SESSION['outdoor'] = $_POST['outdoor'];
+    if (isset($_POST['submit'])) {
+        $indoor = $_SESSION['indoor'] = $_POST['indoor'];
+        $outdoor = $_SESSION['outdoor'] = $_POST['outdoor'];
 
-        $f3->set('first', $_SESSION['first']);
-        $f3->set('last', $_SESSION['last']);
-        $f3->set('age', $_SESSION['age']);
-        $f3->set('gender', $_SESSION['gender']);
-        $f3->set('phone', $_SESSION['phone']);
-
-        $f3->set('email', $_SESSION['email']);
-        $f3->set('seeking', $_SESSION['seeking']);
-        $f3->set('state', $_SESSION['state']);
-        $f3->set('bio', $_SESSION['bio']);
-
-        $f3->set('indoor', $_SESSION['indoor']);
-        $f3->set('outdoor', $_SESSION['outdoor']);
-
-        include('model/validate.php');
-        $isValid = $iVal = $oVal = true;
-
-        if (!validOutdoor($outdoor)) {
-            $isValid = $iVal = false;
-        }
-
-        if (!validIndoor($indoor)) {
-            $isValid = $oVal = false;
-        }
-
-
-
-        if ($isValid) {
-            echo $template->render('views/summary.html');
-        } else {
-            if (!$oVal) echo "<p>Valid outdoor activities only</p>";
-            if (!$iVal) echo "<p>Valid indoor activities only</p>";
-            echo $template->render('views/interests.html');
-        }
-    } else {
-        echo $template->render('views/interests.html');
     }
+
+    $f3->set('first', $_SESSION['first']);
+    $f3->set('last', $_SESSION['last']);
+    $f3->set('age', $_SESSION['age']);
+    $f3->set('gender', $_SESSION['gender']);
+    $f3->set('phone', $_SESSION['phone']);
+
+    $f3->set('email', $_SESSION['email']);
+    $f3->set('seeking', $_SESSION['seeking']);
+    $f3->set('state', $_SESSION['state']);
+    $f3->set('bio', $_SESSION['bio']);
+
+    $f3->set('premium', $_SESSION['premium']);
+
+
+    include('model/validate.php');
+    $isValid = $iVal = $oVal = true;
+
+    if (!validOutdoor($outdoor)) {
+        $isValid = $iVal = false;
+    }
+    if (!validIndoor($indoor)) {
+        $isValid = $oVal = false;
+    }
+
+
+    if ($isValid) {
+        echo $template->render('views/summary.html');
+    } else {
+        if (!$oVal) echo "<p>Valid outdoor activities only</p>";
+        if (!$iVal) echo "<p>Valid indoor activities only</p>";
+
+        $f3->reroute('/interestsnotvalid');
+        echo "summary not valid";
+        //checks if premium
+        if (isset($_SESSION['premium'])) {
+            $f3->reroute('/interests');
+        } else {
+            $f3->reroute('/profile-info');
+        }
+    }//end if isValid
 
 }
 );
 
 
-
-
-
 //run Fat-Free
 $f3->run();
+
+
+
