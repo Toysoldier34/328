@@ -125,19 +125,19 @@ $f3->route('GET|POST /interests', function ($f3) {
     $f3->set('state', $_SESSION['state']);
     $f3->set('bio', $_SESSION['bio']);
 
+    $member = $_SESSION['member'];
+
+    $member->setEmail($_SESSION['email']);
+    $member->setSeeking($_SESSION['seeking']);
+    $member->setState($_SESSION['state']);
+    $member->setBio($_SESSION['bio']);
+
+    $_SESSION['member'] = $member;
+
     $template = new Template();
 
     if (isset($_SESSION['premium'])) {
-        $member = $_SESSION['member'];
-
-        $member->setEmail($_SESSION['email']);
-        $member->setSeeking($_SESSION['seeking']);
-        $member->setState($_SESSION['state']);
-        $member->setBio($_SESSION['bio']);
-
-        $_SESSION['member'] = $member;
-
-        echo $template->render('views/interests.html');
+       echo $template->render('views/interests.html');
     } else {
         $f3->reroute('/summary');
     }
@@ -152,10 +152,8 @@ $f3->route('GET|POST /summary', function ($f3) {
     if (isset($_POST['submit'])) {
         $indoor = $_SESSION['indoor'] = $_POST['indoor'];
         $outdoor = $_SESSION['outdoor'] = $_POST['outdoor'];
-
-
     }
-    
+
     //sets indoor outdoor interests to user object
     if (isset($_SESSION['premium'])) {
         $member = $_SESSION['member'];
@@ -164,17 +162,22 @@ $f3->route('GET|POST /summary', function ($f3) {
         $_SESSION['member'] = $member;
     }
 
+    //$member = new PremiumMember($first, $last, $age, $gender, $phone);
+    $member = $_SESSION['member'];
 
-    $f3->set('first', $_SESSION['first']);
-    $f3->set('last', $_SESSION['last']);
-    $f3->set('age', $_SESSION['age']);
-    $f3->set('gender', $_SESSION['gender']);
-    $f3->set('phone', $_SESSION['phone']);
+    $f3->set('first', $member->getFname());
+    $f3->set('last', $member->getLname());
+    $f3->set('age', $member->getAge());
+    $f3->set('gender', $member->getGender());
+    $f3->set('phone', $member->getPhone());
 
-    $f3->set('email', $_SESSION['email']);
-    $f3->set('seeking', $_SESSION['seeking']);
-    $f3->set('state', $_SESSION['state']);
-    $f3->set('bio', $_SESSION['bio']);
+    $f3->set('email', $member->getEmail());
+    $f3->set('seeking', $member->getSeeking());
+    $f3->set('state', $member->getState());
+    $f3->set('bio', $member->getBio());
+
+    $f3->set('indoor', $member->getIndoor());
+    $f3->set('outdoor', $member->getOutdoor());
 
     $f3->set('premium', $_SESSION['premium']);
 
@@ -191,8 +194,6 @@ $f3->route('GET|POST /summary', function ($f3) {
 
 
     if ($isValid) {
-
-
         echo $template->render('views/summary.html');
     } else {
         if (!$oVal) echo "<p>Valid outdoor activities only</p>";

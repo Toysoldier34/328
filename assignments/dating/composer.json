@@ -3,10 +3,13 @@
   "authors":[
     {
       "name":"Tony Thompson",
-      "email":"athompson15@mail.greenriver.edu"
+      "email":"athompson15@greenriver.mail.edu"
     }
   ],
   "require":{
     "bcosca/fatfree-core":"dev-master"
+  },
+  "autoload": {
+    "classmap": ["classes/"]
   }
 }
