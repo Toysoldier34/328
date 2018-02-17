@@ -59,7 +59,7 @@ $f3->route('GET|POST /profile-info', function ($f3) {
         $first = $_SESSION['first'] = $_POST['first'];
         $last = $_SESSION['last'] = $_POST['last'];
         $age = $_SESSION['age'] = $_POST['age'];
-        $_SESSION['gender'] = $_POST['gender'];
+        $gender = $_SESSION['gender'] = $_POST['gender'];
         $phone = $_SESSION['phone'] = $_POST['phone'];
         $_SESSION['premium'] = $_POST['premium'];
 
@@ -87,6 +87,14 @@ $f3->route('GET|POST /profile-info', function ($f3) {
         }
 
         if ($isValid) {
+            //initialize member object
+            if (isset($_SESSION['premium'])) {
+                $member = new PremiumMember($first, $last, $age, $gender, $phone);
+            } else {
+                $member = new Member($first, $last, $age, $gender, $phone);
+            }
+            $_SESSION['member'] = $member;
+
             echo $template->render('views/profile-info.html');
         } else {
             if (!$fVal) echo "<p>Enter a valid first name</p>";
@@ -94,7 +102,7 @@ $f3->route('GET|POST /profile-info', function ($f3) {
             if (!$aVal) echo "<p>Enter a valid age over 18</p>";
             if (!$pVal) echo "<p>Enter a valid phone number</p>";
 
-            $f3->reroute('/personal-information');
+            echo $template->render('views/personal-information.html');
         }
     } else {
         $f3->reroute('/personal-information');
@@ -120,6 +128,15 @@ $f3->route('GET|POST /interests', function ($f3) {
     $template = new Template();
 
     if (isset($_SESSION['premium'])) {
+        $member = $_SESSION['member'];
+
+        $member->setEmail($_SESSION['email']);
+        $member->setSeeking($_SESSION['seeking']);
+        $member->setState($_SESSION['state']);
+        $member->setBio($_SESSION['bio']);
+
+        $_SESSION['member'] = $member;
+
         echo $template->render('views/interests.html');
     } else {
         $f3->reroute('/summary');
@@ -136,7 +153,17 @@ $f3->route('GET|POST /summary', function ($f3) {
         $indoor = $_SESSION['indoor'] = $_POST['indoor'];
         $outdoor = $_SESSION['outdoor'] = $_POST['outdoor'];
 
+
     }
+    
+    //sets indoor outdoor interests to user object
+    if (isset($_SESSION['premium'])) {
+        $member = $_SESSION['member'];
+        $member->setOutdoor($_SESSION['outdoor']);
+        $member->setIndoor($_SESSION['indoor']);
+        $_SESSION['member'] = $member;
+    }
+
 
     $f3->set('first', $_SESSION['first']);
     $f3->set('last', $_SESSION['last']);
@@ -164,6 +191,8 @@ $f3->route('GET|POST /summary', function ($f3) {
 
 
     if ($isValid) {
+
+
         echo $template->render('views/summary.html');
     } else {
         if (!$oVal) echo "<p>Valid outdoor activities only</p>";

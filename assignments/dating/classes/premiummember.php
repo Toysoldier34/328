@@ -2,8 +2,8 @@
 
 Class PremiumMember extends Member{
 
-    protected $indoor;
-    protected $outdoor;
+    protected $indoor = array();
+    protected $outdoor = array();
 
 
 
