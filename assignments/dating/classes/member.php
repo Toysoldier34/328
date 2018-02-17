@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Date: 2/16/2018
+ * @author Tony Thompson
+ * @version 1.0
+ *
+ * class for members
+ */
+
 Class Member
 {
 
