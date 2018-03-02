@@ -96,7 +96,13 @@ Class Member
      */
     public function setAge($age)
     {
-        $this->age = $age;
+        //validates age to ensure it is a positive number
+        if (is_numeric($age)) {
+            if ($age > 0) {
+
+                $this->age = $age;
+            }
+        }
     }
 
     /**
@@ -144,7 +150,10 @@ Class Member
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        //validates email to ensure we can sell it and send ads
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->email = $email;
+        }
     }
 
     /**
