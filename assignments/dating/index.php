@@ -193,7 +193,12 @@ $f3->route('GET|POST /summary', function ($f3) {
     }
 
 
-    if ($isValid) {
+    if ($isValid) {  //valid data to now display and add to database
+        //add member to database
+        $dbfunc = new dbfunctions();
+        $dbfunc->addMember($fname, $lname, $age, $gender, $phone, $email,
+            $seeking, $state, $bio, $interests, $premium);
+        //display page
         echo $template->render('views/summary.html');
     } else {
         if (!$oVal) echo "<p>Valid outdoor activities only</p>";

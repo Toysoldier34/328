@@ -23,46 +23,19 @@
 <br>
 <div id="border" class="container  m-auto border" >
     <div class="row  m-auto">
-        <br><br>
-        <div class="col  m-auto">
-            <div class="text-center">
-                <h2>My Dating Website</h2>
-                <a href="admin.html">Admin Page</a>
-                <h3>Membership</h3>
-            </div>
-            <p>
-                Welcome to the web's most successful dating website. At My Dating Website you'll meet another
-                like minded individuals.
-            </p>
-            <div class="text-center">
-                <h4>Hear what our users are saying about us.</h4>
-            </div>
-            <hr>
-            <div class="text-center">
-                <p>
-                    "I met the love of my life after only a month!" - Andrea
-                    <br>
-                    "It was cool" -Jim
-                </p>
-            </div>
-            <hr>
 
-            <div class="text-center">
-                <form method="post" action="personal-information">
-                    <input class="btn btn-primary" name="submit" value="Create a Profile!" type="submit">
 
-                </form>
-            </div>
-        </div>
-        <div class="col  m-auto">
-            <div>
-                <br>
-                <img class="rounded" src="images/splash.jpg"  alt="Splash">
-                <br>
-            </div>
-            <br>
-        </div>
-        <br><br>
+        <h1>Student List</h1>
+
+        <ol>
+            <repeat group="{{ @students }}" value="{{ @student }}">
+                <li>{{ @student['last'] }}, {{ @student['first'] }}</li>
+            </repeat>
+        </ol>
+
+
+
+
     </div>
 
 </div>
