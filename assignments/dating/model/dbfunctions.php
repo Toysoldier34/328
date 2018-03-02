@@ -29,18 +29,61 @@ ENGINE = MyISAM;
 
 */
 
-
+require("/home/athompso/config.php");
 
 
 class dbfunctions
 {
 
+    //establishes server connection
+    function connect()
+    {
+        try {
+            //Instantiate a database object
+            $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+            return $dbh;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }//end connect
 
 
+    //adds members to database
+    function addMember($fname, $lname, $age, $gender, $phone, $email, $seeking, $state, $bio, $interests, $premium)
+    {
+        global $dbh;
+        $sql = "INSERT INTO members (fname, lname, age, gender, phone, email, seeking, state, bio, interests, premium)
+            VALUES (:fname, :lname, :age, :gender, :phone, :email, :seeking, :state, :bio, :interests, :premium)";
+        $statement = $dbh->prepare($sql);
+
+        $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
+        $statement->bindParam(':lname', $lname, PDO::PARAM_STR);
+        $statement->bindParam(':age', $age, PDO::PARAM_INT);
+        $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
+        $statement->bindParam(':phone', $phone, PDO::PARAM_INT);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':seeking', $seeking, PDO::PARAM_STR);
+        $statement->bindParam(':state', $state, PDO::PARAM_STR);
+        $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
+        $statement->bindParam(':interests', $interests, PDO::PARAM_STR);
+        $statement->bindParam(':premium', $premium, PDO::PARAM_INT);
+
+        $success = $statement->execute();
+        return $success;
+    }//end addMember
 
 
-
-
+    //gets members
+    function getMembers()
+    {
+        global $dbh;
+        $sql = "SELECT * FROM members ORDER BY lname";
+        $statement = $dbh->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }//end getMembers
 
 
 
