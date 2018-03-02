@@ -47,7 +47,6 @@ class dbfunctions
 
 
 
-
 }//end dbfunctions
 
 

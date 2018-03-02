@@ -213,6 +213,19 @@ $f3->route('GET|POST /summary', function ($f3) {
 );
 
 
+
+
+//define an admin route
+$f3->route('GET|POST /admin', function () {
+    $template = new Template();
+    echo $template->render('views/admin.html');
+}
+);
+
+
+
+
+
 //run Fat-Free
 $f3->run();
 
