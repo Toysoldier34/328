@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="show">Show Cars</button>
+
+<div id="result"></div>
+
+<script src="//code.jquery.com/jquery.js"></script>
+
+<script>
+
+    $("#show").click(function () {
+        //alert("Test");
+        //$("#result").append("Click the button! ");
+        $.getJSON("cars.json", function (result) {
+            $.each(result, function (index, item) {
+               $("#result").append("<p>" + item.Identification["Model Year "] + "-" + item.Engine +"</p>");
+            });
+        });
+    });
+
+</script>
+
+
+
+
+</body>
+</html>

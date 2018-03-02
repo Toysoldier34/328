@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head></head>
+<body>
+
+<label>Enter SID:
+    <input type="text" id="sid"></label><br>
+<button id="btnCheck">Check</button>
+<br>
+<p id="result"></p>
+
+<script>
+
+    //Grab our elements
+    var btnCheck = document.getElementById("btnCheck");
+    var txtSid = document.getElementById("sid");
+    var txtResult = document.getElementById("result");
+
+    //Attach event handler to button
+    btnCheck.onclick = fnCheck;
+
+    //Define check function
+    function fnCheck() {
+        //Get the text box value
+        var sid = txtSid.value;
+        if (validSid(sid))
+            txtResult.innerHTML = "Valid!";
+        else
+            txtResult.innerHTML = "Not valid";
+    }
+
+    /*
+        var sids = ['880-35-3222', '880123456',
+            '88012345', '8801234567', '88012345X',
+            '880123456-'];
+
+        for (i=0; i<sids.length; i++) {
+
+            if (validSid(sids[i])){
+                console.log(sids[i] + " is a match");
+            } else {
+                console.log(sids[i] + " is not a match");
+            }
+        }
+    */
+    function validSid(sid) {
+        var pattern = '^8\\d{2}-?\\d{2}-?\\d{4}$';
+        var regex = new RegExp(pattern);
+        var n = sid.search(regex);
+        return n >= 0;
+    }
+</script>
+</body>
