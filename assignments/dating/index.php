@@ -24,6 +24,9 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 
+$dbfunc = new dbfunctions();
+$dbh = $dbfunc->connect();
+
 $f3->set('first', 'Sarah');
 $f3->set('last', 'Smith');
 $f3->set('age', '30');
@@ -176,11 +179,17 @@ $f3->route('GET|POST /summary', function ($f3) {
     $f3->set('state', $member->getState());
     $f3->set('bio', $member->getBio());
 
-    $f3->set('indoor', $member->getIndoor());
-    $f3->set('outdoor', $member->getOutdoor());
+    if (isset($_SESSION['premium'])) {
+        $premium = 1;
 
-    $f3->set('premium', $_SESSION['premium']);
+        $f3->set('indoor', $member->getIndoor());
+        $f3->set('outdoor', $member->getOutdoor());
 
+        $f3->set('premium', $_SESSION['premium']);
+        $interests = $member->getIndoor() . $member->getOutdoor();
+    } else {
+        $premium = 0;
+    }
 
     include('model/validate.php');
     $isValid = $iVal = $oVal = true;
@@ -195,9 +204,23 @@ $f3->route('GET|POST /summary', function ($f3) {
 
     if ($isValid) {  //valid data to now display and add to database
         //add member to database
+
+        $fname = $member->getFName();
+        $lname = $member->getLName();
+        $age = $member->getAge();
+        $gender = $member->getGender();
+        $phone = $member->getPhone();
+        $email = $member->getEmail();
+        $seeking = $member->getSeeking();
+        $state = $member->getState();
+        $bio = $member->getBio();
+        $image = "http://athompson.greenriverdev.com/328/assignments/dating/images/splash.jpg";
+
+
+
         $dbfunc = new dbfunctions();
         $dbfunc->addMember($fname, $lname, $age, $gender, $phone, $email,
-            $seeking, $state, $bio, $interests, $premium);
+            $state, $seeking, $bio, $premium, $image, $interests);
         //display page
         echo $template->render('views/summary.html');
     } else {

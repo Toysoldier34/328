@@ -15,7 +15,7 @@ CREATE TABLE `athompso_grc`.`members`(
     `lname` VARCHAR(255) NOT NULL ,
     `age` INT NOT NULL ,
     `gender` VARCHAR(255) NOT NULL ,
-    `phone` INT NOT NULL ,
+    `phone` VARCHAR(255) NOT NULL ,
     `email` VARCHAR(255) NOT NULL ,
     `state` VARCHAR(255) NOT NULL ,
     `seeking` VARCHAR(255) NOT NULL ,
@@ -50,24 +50,26 @@ class dbfunctions
 
 
     //adds members to database
-    function addMember($fname, $lname, $age, $gender, $phone, $email, $seeking, $state, $bio, $interests, $premium)
+    function addMember($fname, $lname, $age, $gender, $phone, $email, $state, $seeking, $bio, $premium, $image, $interests)
     {
         global $dbh;
-        $sql = "INSERT INTO members (fname, lname, age, gender, phone, email, seeking, state, bio, interests, premium)
-            VALUES (:fname, :lname, :age, :gender, :phone, :email, :seeking, :state, :bio, :interests, :premium)";
+        $sql = "INSERT INTO members (fname, lname, age, gender, phone, email, state, seeking, bio, premium, image, interests)
+            VALUES (:fname, :lname, :age, :gender, :phone, :email, :state, :seeking, :bio, :premium, :image, :interests)";
         $statement = $dbh->prepare($sql);
 
         $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
         $statement->bindParam(':lname', $lname, PDO::PARAM_STR);
         $statement->bindParam(':age', $age, PDO::PARAM_INT);
         $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
-        $statement->bindParam(':phone', $phone, PDO::PARAM_INT);
+        $statement->bindParam(':phone', $phone, PDO::PARAM_STR);
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
-        $statement->bindParam(':seeking', $seeking, PDO::PARAM_STR);
         $statement->bindParam(':state', $state, PDO::PARAM_STR);
+        $statement->bindParam(':seeking', $seeking, PDO::PARAM_STR);
         $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
-        $statement->bindParam(':interests', $interests, PDO::PARAM_STR);
         $statement->bindParam(':premium', $premium, PDO::PARAM_INT);
+        $statement->bindParam(':interests', $interests, PDO::PARAM_STR);
+        $statement->bindParam(':image', $image, PDO::PARAM_STR);
+
 
         $success = $statement->execute();
         return $success;
