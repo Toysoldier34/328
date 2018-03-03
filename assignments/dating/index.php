@@ -23,7 +23,6 @@ $f3 = Base::instance();
 //set debug level
 $f3->set('DEBUG', 3);
 
-
 $dbfunc = new dbfunctions();
 $dbh = $dbfunc->connect();
 
@@ -186,7 +185,9 @@ $f3->route('GET|POST /summary', function ($f3) {
         $f3->set('outdoor', $member->getOutdoor());
 
         $f3->set('premium', $_SESSION['premium']);
-        $interests = $member->getIndoor() . $member->getOutdoor();
+        $interests = implode(", " , $member->getIndoor());
+        $interests .= ", ";
+        $interests .= implode(", ", $member->getOutdoor());
     } else {
         $premium = 0;
     }
@@ -217,10 +218,15 @@ $f3->route('GET|POST /summary', function ($f3) {
         $image = "http://athompson.greenriverdev.com/328/assignments/dating/images/splash.jpg";
 
 
-
         $dbfunc = new dbfunctions();
-        $dbfunc->addMember($fname, $lname, $age, $gender, $phone, $email,
+        $success = $dbfunc->addMember($fname, $lname, $age, $gender, $phone, $email,
             $state, $seeking, $bio, $premium, $image, $interests);
+        if($success){
+            //echo "Member added successfully";
+        }else{
+            //echo "Member not added";
+        }
+
         //display page
         echo $template->render('views/summary.html');
     } else {
@@ -244,7 +250,11 @@ $f3->route('GET|POST /summary', function ($f3) {
 
 
 //define an admin route
-$f3->route('GET|POST /admin', function () {
+$f3->route('GET|POST /admin', function ($f3) {
+    $dbfunc = new dbfunctions();
+    $members = $dbfunc->getMembers();
+    $f3->set('members', $members);
+
     $template = new Template();
     echo $template->render('views/admin.html');
 }

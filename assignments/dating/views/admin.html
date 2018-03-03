@@ -20,21 +20,47 @@
     <title>Admin</title>
 </head>
 <body>
+<!-- As a heading -->
+<nav class="navbar navbar-light bg-faded">
+    <h1 class="navbar-brand mb-0">My Dating Website</h1>
+</nav>
 <br>
-<div id="border" class="container  m-auto border" >
-    <div class="row  m-auto">
 
+<div id="border" class="container" >
+    <h1 id="head">Membership</h1>
 
-        <h1>Student List</h1>
+    <div class="table-responsive">
 
-        <ol>
-            <repeat group="{{ @students }}" value="{{ @student }}">
-                <li>{{ @student['last'] }}, {{ @student['first'] }}</li>
+        <table class="table">
+            <tr id="headrow">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>State</th>
+                <th>Gender</th>
+                <th>Seeking</th>
+                <th>Bio</th>
+                <th>Premium</th>
+                <th>Interests</th>
+            </tr>
+            <repeat group="{{ @members}}" value="{{ @member }}">
+                <tr>
+                    <td>{{@member['member_id']}}</td>
+                    <td>{{@member['fname']}} {{@member['lname']}}</td>
+                    <td>{{@member['age']}}</td>
+                    <td>{{@member['phone']}}</td>
+                    <td>{{@member['email']}}</td>
+                    <td>{{@member['state']}}</td>
+                    <td>{{@member['gender']}}</td>
+                    <td>{{@member['seeking']}}</td>
+                    <td>{{@member['bio']}}</td>
+                    <td><input type="checkbox"  disabled <check if="{{@member['premium'] == 1}}">checked</check>></td>
+                    <td>{{@member['interests']}}</td>
+                </tr>
             </repeat>
-        </ol>
-
-
-
+        </table>
 
     </div>
 

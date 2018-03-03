@@ -53,6 +53,7 @@ class dbfunctions
     function addMember($fname, $lname, $age, $gender, $phone, $email, $state, $seeking, $bio, $premium, $image, $interests)
     {
         global $dbh;
+        //$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO members (fname, lname, age, gender, phone, email, state, seeking, bio, premium, image, interests)
             VALUES (:fname, :lname, :age, :gender, :phone, :email, :state, :seeking, :bio, :premium, :image, :interests)";
         $statement = $dbh->prepare($sql);
@@ -67,9 +68,16 @@ class dbfunctions
         $statement->bindParam(':seeking', $seeking, PDO::PARAM_STR);
         $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
         $statement->bindParam(':premium', $premium, PDO::PARAM_INT);
-        $statement->bindParam(':interests', $interests, PDO::PARAM_STR);
         $statement->bindParam(':image', $image, PDO::PARAM_STR);
+        $statement->bindParam(':interests', $interests, PDO::PARAM_STR);
 
+
+//        $sql = "INSERT INTO members (fname, lname, age, gender, phone, email, state, seeking, bio, premium, image, interests)
+//            VALUES ('g', 'g', 3, 'g', 'g', 'g', 'g', 'g', 'g', 0, 'g', 'g')";
+//        $statement = $dbh->prepare($sql);
+
+        //$statement->debugDumpParams();
+        //print_r($statement);
 
         $success = $statement->execute();
         return $success;
