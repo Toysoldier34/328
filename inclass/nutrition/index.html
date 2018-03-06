@@ -56,22 +56,34 @@ Search: <input type="text" id="searchBox">
             "q": searchTerm
         }
 
-        //adds to drop down
-        $.getJSON(url, params, function(result) {  //params is optional, adds in search params as an array instead of adding to url
-            var items = result.list.item;
-            $.each(items, function(index, item) {
-                $("#food-drop").append('<option value="' + item.ndbno + '">' + item.name + '</option>');
-            });
+        // //adds to drop down
+        // $.getJSON(url, params, function(result) {  //params is optional, adds in search params as an array instead of adding to url
+        //     var items = result.list.item;
+        //     $.each(items, function(index, item) {
+        //         $("#food-drop").append('<option value="' + item.ndbno + '">' + item.name + '</option>');
+        //     });
+        // });
+
+
+        //reacts to drop down box changing
+        $("option").click(function() {
+            var ndbno = $(this).val();
+            alert(ndbno);
         });
 
+        // //reacts to drop down box changing
+        // $("#food-drop").change(function() {
+        //     var ndbno = $("select option:selected").val();
+        //     alert(ndbno);
+        // });
 
 
-        $.getJSON(url, params, function(result) {  //params is optional, adds in search params as an array instead of adding to url
-            var items = result.list.item;
-            $.each(items, function(index, item) {
-                $("#food-list").append('<p>' + item.ndbno + item.name + '</p>');
-            });
-        });
+        // $.getJSON(url, params, function(result) {  //params is optional, adds in search params as an array instead of adding to url
+        //     var items = result.list.item;
+        //     $.each(items, function(index, item) {
+        //         $("#food-list").append('<p>' + item.ndbno + item.name + '</p>');
+        //     });
+        // });
 
 
 
