@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- https://ndb.nal.usda.gov/ndb/doc/index# -->
+<!-- Key:  RCt3FHnsRir5EB8NGcQ20QV0wskOM6Fh6BiZryLT -->
+<!-- https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=RCt3FHnsRir5EB8NGcQ20QV0wskOM6Fh6BiZryLT&location=Denver+CO -->
+
+<!-- XML  https://api.nal.usda.gov/ndb/search/?format=xml&q=butter&max=25&offset=0&api_key=DEMO_KEY  -->
+<!-- JSON  https://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=n&max=25&offset=0&api_key=DEMO_KEY   Add key to end, replace DEMO_KEY  -->
+
+
+<h1>Nutrition Analyzer</h1>
+Search: <input type="text" id="searchBox">
+<button id="search">Search</button>
+<br>
+<select id="food-drop"></select>
+
+
+<div id="food-list"></div>
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+
+<script>
+
+    //hide drop-down list
+    $("#food-drop").hide();
+
+
+    //search button is clicked
+    $("#search").click(function() {
+
+        $("#food-drop").html("");
+        $("#food-drop").show();
+
+        //alert("Test");
+        //get the data from the API
+        //var url = "https://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=n&max=25&offset=0&api_key=RCt3FHnsRir5EB8NGcQ20QV0wskOM6Fh6BiZryLT";
+        var url = "https://api.nal.usda.gov/ndb/search/";
+        var searchTerm = document.getElementById("searchBox").value;  //get value from search box
+        var key = "RCt3FHnsRir5EB8NGcQ20QV0wskOM6Fh6BiZryLT";
+
+        //define the search parameters
+        var params = {
+            "format": "json",
+            "sort": "n",
+            "max": 25,
+            "offset": 0,  //what index to start results at
+            "ds": "Standard Reference",
+            "api_key": key,
+            "q": searchTerm
+        }
+
+        //adds to drop down
+        $.getJSON(url, params, function(result) {  //params is optional, adds in search params as an array instead of adding to url
+            var items = result.list.item;
+            $.each(items, function(index, item) {
+                $("#food-drop").append('<option value="' + item.ndbno + '">' + item.name + '</option>');
+            });
+        });
+
+
+
+        $.getJSON(url, params, function(result) {  //params is optional, adds in search params as an array instead of adding to url
+            var items = result.list.item;
+            $.each(items, function(index, item) {
+                $("#food-list").append('<p>' + item.ndbno + item.name + '</p>');
+            });
+        });
+
+
+
+    });
+
+</script>
+
+
+</body>
+</html>
