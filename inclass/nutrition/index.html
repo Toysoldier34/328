@@ -14,12 +14,15 @@
 <!-- JSON  https://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=n&max=25&offset=0&api_key=DEMO_KEY   Add key to end, replace DEMO_KEY  -->
 
 
+<!--  http://tostrander.greenriverdev.com/328/nutrition/  -->
+
 <h1>Nutrition Analyzer</h1>
 Search: <input type="text" id="searchBox">
 <button id="search">Search</button>
 <br>
 <select id="food-drop"></select>
 
+<div id="details"></div>
 
 <div id="food-list"></div>
 
@@ -64,10 +67,22 @@ Search: <input type="text" id="searchBox">
         //     });
         // });
 
+        //adds to drop down
+        $.getJSON(url, params, function(result) {  //params is optional, adds in search params as an array instead of adding to url
+            $("#details").html("<h3>Nutrients</h3>");
+            var nutrients = result.foods[0].food.nutrients;
+            $.each(nutrients, function(index, nutrient) {
+                $("#details").append(nutrient.name + ":" + nutrient.value
+                + "(" + nutrient.unit + ")<br>");
+            });
+        });
+
 
         //reacts to drop down box changing
         $("option").click(function() {
             var ndbno = $(this).val();
+            //var ndbno = $("selected option:selected").val();  //alternative
+
             alert(ndbno);
         });
 
@@ -84,6 +99,9 @@ Search: <input type="text" id="searchBox">
         //         $("#food-list").append('<p>' + item.ndbno + item.name + '</p>');
         //     });
         // });
+
+
+        //" https://api.nal.usda.gov/ndb/reports/V2?ndbno=01009&ndbno=01009&ndbno=45202763&ndbno=35193&type=b&format=json&api_key=DEMO_KEY"
 
 
 
